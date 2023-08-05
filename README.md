@@ -1,5 +1,2 @@
-# 1
-# lol
-# Hi
-# Hello
-# Yay
+# This is store class thing
+## In Python
