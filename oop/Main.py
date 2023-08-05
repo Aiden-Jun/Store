@@ -2,12 +2,25 @@ from User import Seller, Buyer
 from Card import Card
 from Manager import Manager
 from Product import Product
+from oop.Auth import Auth
+
 
 class Store:
     def __init__(self):
         self.manager = Manager()
 
     def start(self):
+        # 가입, 로그인
+        auth = Auth()
+        auth.show_prompt()
+
+        # 로그인 시도
+        # 이메일, 비밀번호 입력 받기
+        # 진짜 이메일, 비밀번호가 일치하는 유저가 존재하는지 확인(데이터베이스 사용)
+        # 유저가 있다 => 메인 화면 보여주기
+        # 유저가 없다 => 다시 가입 로그인 화면으로 돌아가기
+
+
         # Seller
         seller_1 = Seller('yellowbird@gmail.com', 'yellow', '노랑이', '010-2129-1123', self.manager)
         seller_1_card = Card('551233', 2000, '254')
