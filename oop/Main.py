@@ -2,65 +2,92 @@ from User import Seller, Buyer
 from Card import Card
 from Manager import Manager
 from Product import Product
-from oop.Auth import Auth
+from Auth import Auth
 
+from pwinput import pwinput
 
 class Store:
     def __init__(self):
         self.manager = Manager()
+        self.auth = Auth()
+        self.start_screen()
+    
+    def start_screen(self):
+        print('Sign In (login)')
+        print('Sign Up (create)')
+        choice = input('>').lower()
+        
+        if choice == 'login':
+            self.sign_in()
+            pass
+        else:
+            self.sign_up()
+    
+    def sign_up(self):
+        print('\nSign Up')
 
-    def start(self):
-        # 가입, 로그인
-        auth = Auth()
-        auth.show_prompt()
+        print('What kind of user are you? (buyer/seller)')
+        userType = input('>').lower()
 
-        # 로그인 시도
-        # 이메일, 비밀번호 입력 받기
-        # 진짜 이메일, 비밀번호가 일치하는 유저가 존재하는지 확인(데이터베이스 사용)
-        # 유저가 있다 => 메인 화면 보여주기
-        # 유저가 없다 => 다시 가입 로그인 화면으로 돌아가기
+        if userType == 'buyer' or userType == 'seller':
+            pass
+        else:
+            print('Try Again!')
+            self.sign_up()
 
 
-        # Seller
-        seller_1 = Seller('yellowbird@gmail.com', 'yellow', '노랑이', '010-2129-1123', self.manager)
-        seller_1_card = Card('551233', 2000, '254')
-        seller_1.set_card(seller_1_card)
+        print('Email')
+        entEmail = input('>')
+        
+        if self.auth.does_this_email_exist(entEmail):
+            print('Email provided already exists, try again')
+            self.sign_up()
 
-        # Buyer
-        buyer_1 = Buyer('redbird@gmail.com', 'red', '빨강이', self.manager)
-        buyer_1_card = Card('123483', 1000, '712')
-        buyer_1.set_card(buyer_1_card)
+        print('\nPassword')
+        entPassword = pwinput('>')
 
-        # Changing Balance
-        seller_1.change_balance(100)
-        buyer_1.change_balance(100)
+        print('\nRe-Enter Password')
+        reEntPassword = pwinput('>')
 
-        # Products
-        laptop = Product('Macbook Pro', 'Ultra Fast Macbook Pro, buy today', 40, seller_1)
+        if entPassword != reEntPassword:
+            print('No your passwords does not match')
+            print('Try again')
+            self.sign_up()
 
-        # Adding Product
-        seller_1.add_product(laptop)
+        print('\nName')
+        entName = input('>')
 
-        # Printing all seller and their products
-        print(self.manager.get_all_seller_and_products())
+        self.auth.add_user(entEmail, entPassword, entName, userType)
+        print('Done, now sign in')
 
-        # Adding to cart and buying a product
-        buyer_1.add_to_cart(seller_1.get_user_id(), 0)
-        print(buyer_1.get_cart())
-        buyer_1.buy_cart()
+        self.sign_in()
 
-        # Printing all seller and their products
-        print(self.manager.get_all_seller_and_products())
 
-        # Printing buyer's history
-        print(buyer_1.get_history())
+    def sign_in(self):
+        print('\nSign In')
+        
+        print('Email')
+        entEmail = input('>')
+        
+        print('\nPassword')
+        entPassword = pwinput('>')
 
-        # Printing balances
-        print(seller_1.get_balance())
-        print(buyer_1.get_balance())
+        try:
+            if self.auth.find_user(entEmail, entPassword) != None:
+                user_data = self.auth.find_user(entEmail, entPassword)
+                print(f'Welcome back {user_data[2]}!')
+                self.main_screen()
+        except:
+            print('Email or password is incorrect')
+            print('Please try again')
+            self.sign_in()
+
+
+    def main_screen(self):
+        
+        print('This is main screen (Not done YET)')
 
 
 # This runs when Main.py is not imported
 if __name__ == '__main__':
     store = Store()
-    store.start()
