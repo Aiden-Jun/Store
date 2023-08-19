@@ -4,6 +4,11 @@ from oop.Service.Manager import Manager
 
 class Store:
     def __init__(self):
+<<<<<<< Updated upstream:oop/UI/Main.py
+=======
+        print('Starting...')
+        self.manager = Manager()
+>>>>>>> Stashed changes:oop/Main.py
         self.auth = Auth()
         self.manager = Manager()
         self.start_ui()
