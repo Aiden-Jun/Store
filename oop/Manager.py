@@ -1,13 +1,3 @@
-'''
-Manager Class handles every transactions and products
-It can add products, remove products, and edit products.
-There is a variable that contains all product owners and the product.
-It's like a big database
-
-This is what the variable looks like
-{seller_id:[products]}
-'''
-
 class Manager(object):
     def __init__(self):
         self.__all_products = {}
