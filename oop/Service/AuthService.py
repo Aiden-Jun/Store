@@ -1,13 +1,16 @@
 from Database import Database
+from oop.Infrastructure.Repository import Repository
 
 
-class Auth(object):
+class AuthService(object):
     def __init__(self):
         self.choice = None
-        self.__db = Database()
+        print("뭐지...?")
+        self.__db = Database() # 없어져야 함
+        self.__repository = Repository()
 
     def find_user(self, email, password):
-        user = self.__db.get_user('users.csv', email)
+        user = self.__repository.get_user(email)
         if user != None:
             if user[1] == password:
                 return user
@@ -17,4 +20,4 @@ class Auth(object):
         self.__db.add_user_row(email, password, name, type)
 
     def does_this_email_exist(self, email):
-        self.__db.check_email_existence(email)
+        return self.__db.check_email_existence(email)

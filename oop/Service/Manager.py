@@ -1,7 +1,11 @@
+from oop.Infrastructure.Repository import Repository
+
+
 class Manager(object):
     def __init__(self):
         self.__all_products = {}
         self.__all_users = []
+        self.__repository = Repository()
 
     def register_user(self, user):
         self.__all_users.append(user)
