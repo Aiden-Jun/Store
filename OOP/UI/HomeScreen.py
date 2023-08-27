@@ -1,4 +1,4 @@
-from Store.Service.Service import Service
+from OOP.Service.Service import Service
 
 
 class HomeScreen(object):

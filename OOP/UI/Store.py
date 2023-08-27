@@ -1,5 +1,5 @@
-from Store.UI.AuthScreen import AuthScreen
-from Store.UI.HomeScreen import HomeScreen
+from OOP.UI.AuthScreen import AuthScreen
+from OOP.UI.HomeScreen import HomeScreen
 
 
 class Store:
@@ -23,6 +23,6 @@ class Store:
                 self.auth_screen.sign_in()
 
 
-# This runs when Store.py is not imported
+# This runs when OOP.py is not imported
 if __name__ == '__main__':
     pass

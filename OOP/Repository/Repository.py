@@ -1,5 +1,5 @@
-from Store.Domain.User.User import User
-from Store.Infrastructure.Database import Database
+from OOP.Domain.User.User import User
+from OOP.Infrastructure.Database import Database
 
 
 class Repository(object):

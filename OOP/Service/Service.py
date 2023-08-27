@@ -1,6 +1,6 @@
-from Store.Service.AuthService import AuthService
-from Store.Service.ProductService import ProductService
-from Store.Service.UserService import UserService
+from OOP.Service.AuthService import AuthService
+from OOP.Service.ProductService import ProductService
+from OOP.Service.UserService import UserService
 
 
 class Service(object):

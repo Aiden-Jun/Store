@@ -1,4 +1,4 @@
-from Store.Repository.Repository import Repository
+from OOP.Repository.Repository import Repository
 
 
 class UserService(object):

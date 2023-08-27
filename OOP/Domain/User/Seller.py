@@ -1,7 +1,7 @@
 # Class Seller (Child of User)
 # It will later be child of Buyer
 # It's because seller should also be able to buy
-from Store.Domain.User.User import User
+from OOP.Domain.User.User import User
 
 
 class Seller(User):

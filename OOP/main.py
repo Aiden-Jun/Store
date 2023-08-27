@@ -1,4 +1,4 @@
-from Store.UI.Store import Store
+from OOP.UI.Store import Store
 
 if __name__ == "__main__":
     store = Store()

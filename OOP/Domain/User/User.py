@@ -8,7 +8,7 @@ class User(object):
 
     # Magic Method: Functions that runs automatically
     # Gets User Information
-    def __init__(self, email, password, name):  # Manager class object is passed in
+    def __init__(self, email, password, name, balance):  # Manager class object is passed in
         # Setting User Information
         self._email = email
         self._password = password
@@ -19,8 +19,7 @@ class User(object):
         self._user_id = User.__user_creation_number
 
         # Not assigned value when User object is created
-        self._card = None
-
+        self.__balance = balance
         # Add to Manager's database
         # self._manager.register_user(self)
 
@@ -46,6 +45,18 @@ class User(object):
     def change_balance(self, new_balance):
         if self._card != None:  # Preventing Error
             self._card.set_balance(new_balance)
+
+    def get_card_balance(self):
+        return self.__balance
+
+    def set_balance(self, new_balance):
+        self.__balance = new_balance
+
+    def income(self, amount):
+        self.__balance += amount
+
+    def expense(self, amount):
+        self.__balance -= amount
 
 
 if __name__ == "__main__":
