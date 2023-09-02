@@ -1,4 +1,4 @@
-from OOP.Service.Service import Service
+from Service.Service import Service
 
 
 class AuthScreen(object):
@@ -21,8 +21,10 @@ class AuthScreen(object):
         entPassword = input('>')
 
         user = self.service.get_auth_service().get_user(entEmail, entPassword)
-        print(user.get_name() + '님 하이')
-        return user
+        if user is not None:
+            print(user.get_name() + '님 하이')
+            return user
+        return None
 
     def sign_up(self):
         print('\nSign Up')

@@ -1,6 +1,9 @@
 import csv
 import os
 
+# __init__ function doesn't work on my computer because my computer does not use / instead \
+# So if mac, / if windows, \
+import platform
 
 class Database(object):
     __instance = None
@@ -11,7 +14,8 @@ class Database(object):
         return cls.__instance
 
     def __init__(self):
-        self.root_dir = os.getcwd() + '/Data/'
+            self.root_dir = os.getcwd()
+            self.root_dir = self.root_dir + '\\src\\Data\\'
 
     def read(self, file_name):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
@@ -24,9 +28,13 @@ class Database(object):
 
     def write(self, file_name, rows):
         file_writer = open(self.root_dir + file_name, "a", encoding="utf8")
-        csv_file_writer = csv.writer(file_writer)
-        csv_file_writer.writerows(rows)
+        file_writer.write(f'{rows[0]},{rows[1]},{rows[2]},{rows[3]}\n')
         file_writer.close()
 
-    def search(self):
-        pass
+    def search(self, file_name, email):
+        file_reader = open(self.root_dir + file_name, "r", encoding='utf8')
+        for row in csv.reader(file_reader):
+            if row[0] == email:
+                return row
+        file_reader.close()
+        return None

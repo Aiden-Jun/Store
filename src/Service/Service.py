@@ -1,7 +1,7 @@
-from OOP.Service.AuthService import AuthService
-from OOP.Service.ProductService import ProductService
-from OOP.Service.UserService import UserService
-
+from Service.AuthService import AuthService
+from Service.ProductService import ProductService
+from Service.UserService import UserService
+from Service.UiService import UiService
 
 class Service(object):
     __instance = None
@@ -15,6 +15,7 @@ class Service(object):
         self.__auth_service = AuthService()
         self.__user_service = UserService()
         self.__product_service = ProductService()
+        self.__ui_service = UiService()
 
     def get_auth_service(self):
         return self.__auth_service
@@ -24,3 +25,6 @@ class Service(object):
 
     def get_product_service(self):
         return self.__product_service
+    
+    def get_ui_service(self):
+        return self.__ui_service

@@ -1,4 +1,4 @@
-from OOP.Service.Service import Service
+from Service.Service import Service
 
 
 class HomeScreen(object):

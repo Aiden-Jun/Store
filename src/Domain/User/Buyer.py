@@ -1,5 +1,5 @@
 # Class Buyer (Child of User)
-from OOP.Domain.User.Seller import User
+from User import User
 
 
 class Buyer(User):

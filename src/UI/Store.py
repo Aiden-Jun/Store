@@ -1,5 +1,5 @@
-from OOP.UI.AuthScreen import AuthScreen
-from OOP.UI.HomeScreen import HomeScreen
+from UI.AuthScreen import AuthScreen
+from UI.HomeScreen import HomeScreen
 
 
 class Store:
@@ -12,6 +12,7 @@ class Store:
         if choice == 'login':
             me = self.auth_screen.sign_in()
             if me is None:
+                print('No accounts found, try again')
                 self.auth_screen.show_option_prompt()
             else:
                 self.home_screen.home()

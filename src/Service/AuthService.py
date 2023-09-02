@@ -1,4 +1,4 @@
-from OOP.Repository.Repository import Repository
+from Repository.Repository import Repository
 
 
 class AuthService(object):
