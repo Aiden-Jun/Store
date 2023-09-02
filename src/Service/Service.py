@@ -1,7 +1,8 @@
-from Service.AuthService import AuthService
-from Service.ProductService import ProductService
-from Service.UserService import UserService
-from Service.UiService import UiService
+from src.Service.AuthService import AuthService
+from src.Service.ProductService import ProductService
+from src.Service.UiService import UiService
+from src.Service.UserService import UserService
+
 
 class Service(object):
     __instance = None

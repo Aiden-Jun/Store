@@ -1,4 +1,4 @@
-from Service.Service import Service
+from src.Service.Service import Service
 
 
 class AuthScreen(object):
@@ -22,7 +22,7 @@ class AuthScreen(object):
 
         user = self.service.get_auth_service().get_user(entEmail, entPassword)
         if user is not None:
-            print(user.get_name() + '님 하이')
+            print(user.name + '님 하이')
             return user
         return None
 

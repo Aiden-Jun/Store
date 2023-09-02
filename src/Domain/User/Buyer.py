@@ -1,13 +1,12 @@
 # Class Buyer (Child of User)
-from User import User
+from src.Domain.User.User import User
 
 
 class Buyer(User):
     # Magic Method
-    def __init__(self, email, password, name, manager):
+    def __init__(self, user_id, email, password, name, user_type, money):
         # Use parent class
-        super().__init__(email, password, name, manager)
-
+        super().__init__(user_id, email, password, name, user_type, money)
         # History
         self.__history = []
         self.__cart = []

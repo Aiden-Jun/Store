@@ -1,15 +1,15 @@
 # Class Seller (Child of User)
 # It will later be child of Buyer
 # It's because seller should also be able to buy
-from User import User
+from src.Domain.User.User import User
 
 
 class Seller(User):
     # Magic Method
-    def __init__(self, email, password, name, phone_number, manager):
+    def __init__(self, user_id, email, password, name, user_type, money):
         # Calls parent
-        super().__init__(email, password, name, manager)
-        self.__phone_number = phone_number
+        super().__init__(user_id, email, password, name, user_type, money)
+        # self.__phone_number = phone_number
 
         # Register Seller using id
         self._manager.register_seller(self._user_id)

@@ -1,11 +1,12 @@
-from UI.AuthScreen import AuthScreen
-from UI.HomeScreen import HomeScreen
+from src.UI.AuthScreen import AuthScreen
+from src.UI.HomeScreen import HomeScreen
 
 
 class Store:
     def __init__(self):
-        self.home_screen = HomeScreen()
         self.auth_screen = AuthScreen()
+        self.home_screen = HomeScreen()
+        self.me = None
 
     def start(self):
         choice = self.auth_screen.show_option_prompt()
@@ -15,7 +16,8 @@ class Store:
                 print('No accounts found, try again')
                 self.auth_screen.show_option_prompt()
             else:
-                self.home_screen.home()
+                self.me = me
+                self.home_screen.home(me)
         else:
             result = self.auth_screen.sign_up()
             if result is False:

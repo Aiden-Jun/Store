@@ -5,6 +5,7 @@ import os
 # So if mac, / if windows, \
 import platform
 
+
 class Database(object):
     __instance = None
 
@@ -14,8 +15,8 @@ class Database(object):
         return cls.__instance
 
     def __init__(self):
-            self.root_dir = os.getcwd()
-            self.root_dir = self.root_dir + '\\src\\Data\\'
+        self.root_dir = os.getcwd()
+        self.root_dir = self.root_dir + '\\src\\Data\\'
 
     def read(self, file_name):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
@@ -27,8 +28,10 @@ class Database(object):
         return rows
 
     def write(self, file_name, rows):
+        file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
+        csv_file_reader = csv.reader(file_reader)
         file_writer = open(self.root_dir + file_name, "a", encoding="utf8")
-        file_writer.write(f'{rows[0]},{rows[1]},{rows[2]},{rows[3]}\n')
+        file_writer.write(f'${csv_file_reader.line_num - 1},{rows[0]},{rows[1]},{rows[2]},{rows[3]}\n')
         file_writer.close()
 
     def search(self, file_name, email):

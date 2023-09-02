@@ -1,1 +1,2 @@
-id,title,price,content,is_selling,seller_id
+id,title,content,price,is_selling,seller_id,buyer_id
+1,맥북15인치,화면이 큰 맥북입니다,2000000,1,2,None

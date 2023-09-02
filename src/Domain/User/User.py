@@ -1,4 +1,6 @@
 # Create User Class
+
+
 class User(object):
     __user_creation_number = 0
 
@@ -8,20 +10,23 @@ class User(object):
 
     # Magic Method: Functions that runs automatically
     # Gets User Information
-    def __init__(self, email, password, name, balance):  # Manager class object is passed in
+    def __init__(self, user_id, email, password, name, user_type, money,
+                 repository):  # Manager class object is passed in
         # Setting User Information
+        self._user_id = user_id
         self._email = email
         self._password = password
         self._name = name
+        self.repository = repository
 
         # self._manager = manager
         User.add_user_id()
-        self._user_id = User.__user_creation_number
 
         # Not assigned value when User object is created
-        self.__balance = balance
+        self.__balance = money
         # Add to Manager's database
         # self._manager.register_user(self)
+        self.user_type = user_type
 
     def get_email(self):
         return self._email
@@ -31,6 +36,9 @@ class User(object):
 
     def get_name(self):
         return self._name
+
+    def get_user_type(self):
+        return self.user_type
 
     def set_card(self, card):
         self._card = card
@@ -57,6 +65,19 @@ class User(object):
 
     def expense(self, amount):
         self.__balance -= amount
+
+    def change_name(self, new_name):
+        self._name = new_name
+        self.repository.update_user_name(self._user_id, new_name)
+
+    def convert_domain_to_dto(self):
+        return {
+            "user_id": self.get_user_id(),
+            "email": self.get_email(),
+            "nickname": self.get_name(),
+            "money": self.get_balance(),
+            "user_type": self.get_user_type(),
+        }
 
 
 if __name__ == "__main__":

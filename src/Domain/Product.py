@@ -5,8 +5,8 @@ class Product(object):
     def add_user_id(cls):
         cls.__product_creation_number += 1
 
-
-    def __init__(self, product_name, description, product_price, seller_id):
+    def __init__(self, product_id, product_name, description, product_price, is_selling, seller_id, buyer_id):
+        self.__product_id = product_id
         self.__product_name = product_name
         self.__description = description
         self.__product_price = product_price
@@ -15,14 +15,21 @@ class Product(object):
         self.add_user_id()
         self._user_id = self.__product_creation_number
 
+    def get_product_id(self):
+        return self.__product_id
+
     def get_product_name(self):
         return self.__product_name
-    
+
     def get_product_description(self):
         return self.__description
 
     def get_product_price(self):
         return self.__product_price
-    
+
     def get_product_seller_id(self):
         return self.__seller_id
+
+
+if __name__ == "__main__":
+    pass
