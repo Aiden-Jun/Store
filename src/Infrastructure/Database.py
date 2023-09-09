@@ -19,7 +19,7 @@ class Database(object):
         if platform.system() == 'Windows':
             self.root_dir = self.root_dir + '\\src\\Data\\'
         else:
-            self.root_dir = self.root_dir + '/src/Data/'
+            self.root_dir = self.root_dir + '/Data/'
 
     def read(self, file_name):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")

@@ -30,6 +30,17 @@ class Product(object):
     def get_product_seller_id(self):
         return self.__seller_id
 
+    def convert_dto(self):
+        return {
+            'product_id': self.get_product_id(),
+            'product_name': self.get_product_name(),
+            'description': self.get_product_description(),
+            'product_price': self.get_product_price(),
+            'is_selling': self.get_product_id(),
+            'seller_id': self.get_product_seller_id(),
+            'buyer_id': self.get_product_id,
+        }
+
 
 if __name__ == "__main__":
     pass
