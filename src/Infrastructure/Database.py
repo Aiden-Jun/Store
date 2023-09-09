@@ -34,13 +34,12 @@ class Database(object):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
         all_lines = file_reader.readlines()
         length = len(all_lines)
-        print(length)
         file_writer = open(self.root_dir + file_name, "a", encoding="utf8")
-
-        contents = ''
-        
-
-        file_writer.write(f'{length},{row[0]},{row[1]},{row[2]},{row[3]},{row[4]}\n')
+        content = str(length)
+        for i in range(len(row)):
+            content += f',{row[i]}'
+        content += '\n'
+        file_writer.write(content)
         file_writer.close()
 
     def search(self, file_name, email):
