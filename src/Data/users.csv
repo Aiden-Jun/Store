@@ -1,2 +1,4 @@
 id,email,password,name,user_type,money
-1,aiden.com,yesung,Aiden,buyer,0
+1,aiden.com,yesung,Aiden Jun,buyer,0
+2,aiden.com,yesung,Aiden Jun,seller,0
+3,bir.com,bird,Aiden,seller,0

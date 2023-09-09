@@ -14,14 +14,16 @@ class AuthService(object):
             return False
 
     def add_user(self, email, password, name, user_type):
-        user_repository = self.__repository.user_repository()
+        user_repository = self.__repository.get_user_repository()
         user_repository.add_user(email, password, name, user_type)
 
     def get_user(self, email, password):
-        user_repository = self.__repository.user_repository()
+        user_repository = self.__repository.get_user_repository()
         user = user_repository.find_user_by_email_and_password(email, password)
         if user is not None and user.get_password() == password:
+            print('Converting')
             return user.convert_domain_to_dto()
+        print('Ogga booga there is no')
         return None
 
     def change_name(self, email, password, new_name):

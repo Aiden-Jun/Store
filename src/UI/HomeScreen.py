@@ -17,12 +17,12 @@ class HomeScreen(object):
         """
         print('This is main screen (Not done YET)')
         self.me = me
-        if me.user_type == 'buyer':
+        if me['user_type'] == 'buyer':
             self.buyer_main_ui()
 
     def buyer_main_ui(self):
-        print(f'buyer, 이메일: {self.me.email}, 잔액: {self.me.money}')
-        bought_products = self.service.get_product_service().get_buy_products(self.me.user_id)
+        print(f'buyer, 이메일: {self.me["email"]}, 잔액: {self.me["money"]}')
+        bought_products = self.service.get_product_service().get_buy_products(self.me['user_id'])
         for bought_product in bought_products:
             print(f"{bought_product.get('product_id')},{bought_product.get['product_name']}")
         selling_products = self.service.get_product_service().get_selling_products()

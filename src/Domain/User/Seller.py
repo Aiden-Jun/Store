@@ -6,9 +6,9 @@ from src.Domain.User.User import User
 
 class Seller(User):
     # Magic Method
-    def __init__(self, user_id, email, password, name, user_type, money):
+    def __init__(self, user_id, email, password, name, user_type, money, repo):
         # Calls parent
-        super().__init__(user_id, email, password, name, user_type, money)
+        super().__init__(user_id, email, password, name, user_type, money, repo)
         # self.__phone_number = phone_number
 
         # Register Seller using id

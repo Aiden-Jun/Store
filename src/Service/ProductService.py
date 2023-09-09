@@ -7,7 +7,7 @@ class ProductService(object):
         self.__repository = Repository()
 
     def get_buy_products(self, user_id):
-        products = self.__repository.find_products_by_buyer_id(user_id)
+        products = self.__repository.get_product_repository().find_products_by_buyer_id(user_id)
         productsDTO = []
         for product in products:
             productsDTO.append({
@@ -21,7 +21,7 @@ class ProductService(object):
             })
         return productsDTO
     def get_selling_products(self):
-        products = self.__repository.find_selling_products()
+        products = self.__repository.get_product_repository().find_selling_products()
         productsDTO = []
         for product in products:
             productsDTO.append({

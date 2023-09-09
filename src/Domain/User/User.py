@@ -47,12 +47,17 @@ class User(object):
         return self._user_id
 
     def get_balance(self):
-        if self._card != None:  # Preventing Error
+        try:
             return self._card.get_card_balance()
+        except:
+            return None
 
     def change_balance(self, new_balance):
-        if self._card != None:  # Preventing Error
+        try:
             self._card.set_balance(new_balance)
+            return True
+        except:
+            return False
 
     def get_card_balance(self):
         return self.__balance

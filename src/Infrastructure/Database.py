@@ -16,7 +16,10 @@ class Database(object):
 
     def __init__(self):
         self.root_dir = os.getcwd()
-        self.root_dir = self.root_dir + '\\src\\Data\\'
+        if platform.system() == 'Windows':
+            self.root_dir = self.root_dir + '\\src\\Data\\'
+        else:
+            self.root_dir = self.root_dir + '/src/Data/'
 
     def read(self, file_name):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
@@ -29,9 +32,12 @@ class Database(object):
 
     def write(self, file_name, rows):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
-        csv_file_reader = csv.reader(file_reader)
+        all_lines = file_reader.readlines()
+        length = len(all_lines)
+        print(length)
         file_writer = open(self.root_dir + file_name, "a", encoding="utf8")
-        file_writer.write(f'${csv_file_reader.line_num - 1},{rows[0]},{rows[1]},{rows[2]},{rows[3]}\n')
+
+        file_writer.write(f'{length},{rows[0]},{rows[1]},{rows[2]},{rows[3]},{rows[4]}\n')
         file_writer.close()
 
     def search(self, file_name, email):

@@ -14,7 +14,7 @@ class Store:
             me = self.auth_screen.sign_in()
             if me is None:
                 print('No accounts found, try again')
-                self.auth_screen.show_option_prompt()
+                self.start()
             else:
                 self.me = me
                 self.home_screen.home(me)

@@ -18,8 +18,11 @@ class UserRepository(object):
     def find_user_by_email_and_password(self, email, password):
         user_rows = self.__db.read("users.csv")
         for user_row in user_rows:
-            if user_row[0] == email:
-                return self.convert_user_from_row_to_object(user_row)
+            if user_row[1] == email:
+                if user_row[2] == password:
+                    print('Found one')
+                    return self.convert_user_from_row_to_object(user_row)
+        print('Ooga thee is not any - User repo')
         return None
 
     def add_user(self, email, password, name, user_type):
