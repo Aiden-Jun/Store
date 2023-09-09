@@ -30,14 +30,17 @@ class Database(object):
         file_reader.close()
         return rows
 
-    def write(self, file_name, rows):
+    def write(self, file_name, row):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
         all_lines = file_reader.readlines()
         length = len(all_lines)
         print(length)
         file_writer = open(self.root_dir + file_name, "a", encoding="utf8")
 
-        file_writer.write(f'{length},{rows[0]},{rows[1]},{rows[2]},{rows[3]},{rows[4]}\n')
+        contents = ''
+        
+
+        file_writer.write(f'{length},{row[0]},{row[1]},{row[2]},{row[3]},{row[4]}\n')
         file_writer.close()
 
     def search(self, file_name, email):

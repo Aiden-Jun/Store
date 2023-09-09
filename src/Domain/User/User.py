@@ -23,7 +23,7 @@ class User(object):
         User.add_user_id()
 
         # Not assigned value when User object is created
-        self.__balance = money
+        self.__balance = int(money)
         # Add to Manager's database
         # self._manager.register_user(self)
         self.user_type = user_type
@@ -47,17 +47,10 @@ class User(object):
         return self._user_id
 
     def get_balance(self):
-        try:
-            return self._card.get_card_balance()
-        except:
-            return None
+        return self.__balance
 
     def change_balance(self, new_balance):
-        try:
-            self._card.set_balance(new_balance)
-            return True
-        except:
-            return False
+        self.__balance = new_balance
 
     def get_card_balance(self):
         return self.__balance

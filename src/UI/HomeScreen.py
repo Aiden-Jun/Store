@@ -15,19 +15,27 @@ class HomeScreen(object):
     def buyer_main_ui(self):
         print(f'buyer, 이메일: {self.me["email"]}, 잔액: {self.me["money"]}')
         bought_products = self.service.get_product_service().get_buy_products(self.me['user_id'])
-
-        print()
-        print("==============================================================")
-        for bought_product in bought_products:
-            print(f"구매한 상품: {bought_product['product_id']},{bought_product['product_name']}")
         selling_products = self.service.get_product_service().get_selling_products()
-        print("==============================================================")
         for selling_product in selling_products:
             print(f"판매중인 상품: {selling_product['product_id']},{selling_product['product_name']}")
         print("==============================================================")
         print()
 
+        print()
+        print("==============================================================")
+        for bought_product in bought_products:
+            print(f"구매한 상품: {bought_product['product_id']},{bought_product['product_name']}")
+        print("==============================================================")
+
         product_id = input("구매할 상품의 아이디를 입력하세요: ")
+
         if product_id == 'quit':
             quit()
 
+        answered = self.service.get_product_service().buy_product_using_id(product_id, self.me['user_id'])
+        if answered is False:
+            print('Buying process failed')
+            self.buyer_main_ui()
+        else:
+            print('bought successfully!')
+            self.buyer_main_ui()
