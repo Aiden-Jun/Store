@@ -1,4 +1,4 @@
 user_id,email,password,name,money,user_type
-1,aiden_buyer.com,1234,Aiden Jun B,100000000000,buyer
-2,aiden_seller.com,1234,Aiden Jun S,0,seller
+1,aiden_buyer.com,1234,Aiden Jun B,99994000000,buyer
+2,aiden_seller.com,1234,Aiden Jun S,6000000,seller
 3,bir.com,bird,Aiden,0,seller

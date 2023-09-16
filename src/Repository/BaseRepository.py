@@ -9,7 +9,7 @@ class BaseRepository(object):
     def save(self, domain):
         row = []
         for k, v in domain.__dict__.items():
-            row.append(v)
+            row.append(str(v))
         self._db.update(self._file_name, row)
 
 

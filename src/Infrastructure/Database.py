@@ -49,6 +49,7 @@ class Database(object):
         csv_file_reader = csv.reader(file_reader)
         rows = []
         for row in csv_file_reader:
+            print(row, new_row)
             if row[0] == new_row[0]:
                 rows.append(new_row)
             else:
@@ -57,6 +58,5 @@ class Database(object):
 
         file_writer = open(self.root_dir + file_name, "w", encoding="utf8")
         csv_file_writer = csv.writer(file_writer)
-        print(rows)
         csv_file_writer.writerows(rows)
         file_writer.close()

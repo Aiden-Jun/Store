@@ -17,7 +17,7 @@ class ProductRepository(BaseRepository):
         product_rows = self._db.read("products.csv")
         products = []
         for product_row in product_rows:
-            if product_row[4] == "1":
+            if product_row[4] == "True":
                 products.append(self.convert_product_from_row_to_object(product_row))
         return products
 
@@ -25,8 +25,6 @@ class ProductRepository(BaseRepository):
         product_id = str(product_id)
         product_rows = self._db.read("products.csv")
         for product_row in product_rows:
-            print(product_row)
-            print(product_id)
             if product_row[0] == product_id:
                 return self.convert_product_from_row_to_object(product_row)
         return None
