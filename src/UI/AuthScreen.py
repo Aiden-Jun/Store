@@ -22,7 +22,7 @@ class AuthScreen(object):
 
         user = self.service.get_auth_service().get_user(entEmail, entPassword)
         if user is not None:
-            print(f"Hello {user['nickname']}")
+            print(f"Hello {user['name']}")
             return user
         return None
 

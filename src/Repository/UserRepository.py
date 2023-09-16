@@ -1,28 +1,28 @@
-from src.Domain.User.Buyer import Buyer
-from src.Domain.User.Seller import Seller
-from src.Infrastructure.Database import Database
+from src.Domain.User.User import User
+from src.Repository.BaseRepository import BaseRepository
 
 
-class UserRepository(object):
-    def __init__(self):
-        self.__db = Database()
+class UserRepository(BaseRepository):
+    def create_user(self, email, password, name, user_type):
+        self._db.append("users.csv", [email, password, name, user_type, 0])
 
     def find_user_by_email(self, email):
-        user_rows = self.__db.read("users.csv")
+        user_rows = self._db.read("users.csv")
         for user_row in user_rows:
             if user_row[1] == email:
                 return self.convert_user_from_row_to_object(user_row)
         return None
 
-    def find_user_by_id(self, id):
-        user_rows = self.__db.read("users.csv")
+    def find_user_by_id(self, user_id):
+        user_id = str(user_id)
+        user_rows = self._db.read("users.csv")
         for user_row in user_rows:
-            if user_row[0] == id:
+            if user_row[0] == user_id:
                 return self.convert_user_from_row_to_object(user_row)
         return None
 
     def find_user_by_email_and_password(self, email, password):
-        user_rows = self.__db.read("users.csv")
+        user_rows = self._db.read("users.csv")
         for user_row in user_rows:
             if user_row[1] == email:
                 if user_row[2] == password:
@@ -31,32 +31,8 @@ class UserRepository(object):
         print('Ooga thee is not any - User repo')
         return None
 
-    def add_user(self, email, password, name, user_type):
-        self.__db.write("users.csv", [email, password, name, user_type, 0])
-
-    def update_user_name(self, user_id, new_name):
-        user_rows = self.__db.read("users.csv")
-        for user_row in user_rows:
-            if user_row[0] == user_id:
-                user_row[3] = new_name
-                self.__db.write('users.csv', user_rows)
-                return
-
-
-    def update_user_money(self, user_id, new_money):
-        user_rows = self.__db.read("users.csv")
-        for user_row in user_rows:
-            if user_row[0] == user_id:
-                user_row[5] = new_money
-                self.__db.write('users.csv', user_rows)
-                return
-
-
     def convert_user_from_row_to_object(self, user_row):
-        if user_row[3] == 'seller':
-            return Seller(user_row[0], user_row[1], user_row[2], user_row[3], user_row[4], user_row[5], self)
-        else:
-            return Buyer(user_row[0], user_row[1], user_row[2], user_row[3], user_row[4], user_row[5], self)
+        return User(user_row[0], user_row[1], user_row[2], user_row[3], user_row[4], user_row[5])
 
 
 if __name__ == "__main__":

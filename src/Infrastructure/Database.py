@@ -30,10 +30,12 @@ class Database(object):
         file_reader.close()
         return rows
 
-    def write(self, file_name, row):
+    def append(self, file_name, row):
         file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
         all_lines = file_reader.readlines()
         length = len(all_lines)
+        file_reader.close()
+
         file_writer = open(self.root_dir + file_name, "a", encoding="utf8")
         content = str(length)
         for i in range(len(row)):
@@ -42,10 +44,19 @@ class Database(object):
         file_writer.write(content)
         file_writer.close()
 
-    def search(self, file_name, email):
-        file_reader = open(self.root_dir + file_name, "r", encoding='utf8')
-        for row in csv.reader(file_reader):
-            if row[0] == email:
-                return row
+    def update(self, file_name, new_row):
+        file_reader = open(self.root_dir + file_name, "r", encoding="utf8")
+        csv_file_reader = csv.reader(file_reader)
+        rows = []
+        for row in csv_file_reader:
+            if row[0] == new_row[0]:
+                rows.append(new_row)
+            else:
+                rows.append(row)
         file_reader.close()
-        return None
+
+        file_writer = open(self.root_dir + file_name, "w", encoding="utf8")
+        csv_file_writer = csv.writer(file_writer)
+        print(rows)
+        csv_file_writer.writerows(rows)
+        file_writer.close()

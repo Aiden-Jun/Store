@@ -1,9 +1,6 @@
-from src.Domain.User.Buyer import Buyer
-from src.Domain.User.Seller import Seller
-from src.Domain.User.User import User
-from src.Infrastructure.Database import Database
 from src.Repository.UserRepository import UserRepository
 from src.Repository.ProductRepository import ProductRepository
+
 
 class Repository(object):
     __instance = None
@@ -14,13 +11,13 @@ class Repository(object):
         return cls.__instance
 
     def __init__(self):
-        self.user_repository = UserRepository()
-        self.product_repository = ProductRepository()
+        self.user_repository = UserRepository('users.csv')
+        self.product_repository = ProductRepository('products.csv')
 
-    def get_user_repository(self):
+    def user(self):
         print('Getting user repo')
         return self.user_repository
 
-    def get_product_repository(self):
+    def product(self):
         print('Getting product repo')
         return self.product_repository
